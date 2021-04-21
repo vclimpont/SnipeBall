@@ -10,17 +10,7 @@ public class PlayerController : MonoBehaviour
     private GameObject currentBall;
     private Touch currentTouch;
 
-    private enum MouseTouchPhase { BEGAN, MOVED, ENDED }
-    private MouseTouchPhase currentMousePhase;
-
     private Vector3 dragStartPos;
-    private float cameraDistance;
-
-    void Awake()
-    {
-        currentMousePhase = MouseTouchPhase.BEGAN;
-        cameraDistance = 10f;
-    }
 
     // Start is called before the first frame update
     void Start()
