@@ -167,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &413374445
 Transform:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483f21f132d851e4fae8db59c9f87846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 6605093110341551874, guid: 291791d8b50e0614aab932c26490d831,
+  blobPrefab: {fileID: 6605093110341551874, guid: 291791d8b50e0614aab932c26490d831,
     type: 3}
   force: 15
 --- !u!1 &705507993

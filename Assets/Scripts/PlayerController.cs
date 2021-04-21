@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject ballPrefab;
+    public GameObject blobPrefab;
     public float force;
 
-    private GameObject currentBall;
+    private GameObject currentBlob;
     private Touch currentTouch;
 
     private Vector3 dragStartPos;
@@ -72,22 +72,31 @@ public class PlayerController : MonoBehaviour
 
     void OnDragMoved(bool mouse = false)
     {
-        //Move ball according to current touch position
+        //Move blob according to current touch position
+        Vector3 currentDragPosition = Camera.main.ScreenToWorldPoint(mouse ? Input.mousePosition : (Vector3)currentTouch.position);
+        currentDragPosition.z = 0;
+
+        // Blob rotation
+        float angle = Vector3.Angle(Vector3.up, (dragStartPos - currentDragPosition).normalized);
+        angle = currentDragPosition.x < dragStartPos.x ? 360f - angle : angle;
+        currentBlob.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        //Blob stretch
     }
 
     void OnDragEnd(bool mouse = false)
     {
         Vector3 dragReleasePos = Camera.main.ScreenToWorldPoint(mouse ? Input.mousePosition : (Vector3)currentTouch.position);
         dragReleasePos.z = 0f;
-        Debug.Log(dragReleasePos);
 
         Vector3 shootDirection = (dragStartPos - dragReleasePos).normalized;
-        currentBall.GetComponent<Rigidbody2D>().gravityScale = -1f;
-        currentBall.GetComponent<Rigidbody2D>().AddForce(shootDirection * force, ForceMode2D.Impulse);
+        currentBlob.GetComponent<CircleCollider2D>().enabled = true;
+        currentBlob.GetComponent<Rigidbody2D>().gravityScale = -1f;
+        currentBlob.GetComponent<Rigidbody2D>().AddForce(shootDirection * force, ForceMode2D.Impulse);
     }
 
     void InstantiateNewBall()
     {
-        currentBall = Instantiate(ballPrefab, transform);
+        currentBlob = Instantiate(blobPrefab, transform);
     }
 }
