@@ -7,8 +7,9 @@ public class Enemy : MonoBehaviour
     public float baseSpeed;
     public float maxSpeed;
 
-    private Rigidbody2D rb;
+    public Vector3 TargetDirection { get; set; }
 
+    private Rigidbody2D rb;
     private bool isDead;
 
     void Awake()
@@ -18,21 +19,12 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        rb.velocity = Vector2.down * (baseSpeed * Random.Range(1f, 3f));
+        rb.AddForce((Vector2)TargetDirection * (baseSpeed * Random.Range(1f, 1f)), ForceMode2D.Impulse);
     }
 
     void Die()
     {
         isDead = true;
-        rb.velocity = Vector2.zero;
         Destroy(gameObject);
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Blob"))
-        {
-            Die();
-        }
     }
 }

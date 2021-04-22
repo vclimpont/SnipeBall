@@ -19,7 +19,11 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(enemyPrefab, new Vector3(Random.Range(spawnAnchorLeft.position.x, spawnAnchorRight.position.x), spawnAnchorLeft.position.y, spawnAnchorLeft.position.z), Quaternion.identity);
+            Vector3 startPosition = new Vector3(Random.Range(spawnAnchorLeft.position.x, spawnAnchorRight.position.x), spawnAnchorLeft.position.y, spawnAnchorLeft.position.z);
+            Vector3 targetPosition = new Vector3(Random.Range(spawnAnchorLeft.position.x, spawnAnchorRight.position.x), spawnAnchorLeft.position.y - Random.Range(2f, 10f), spawnAnchorLeft.position.z);
+
+            GameObject enemyGO = Instantiate(enemyPrefab, startPosition, Quaternion.identity);
+            enemyGO.GetComponent<Enemy>().TargetDirection = (targetPosition - startPosition).normalized;
             yield return new WaitForSeconds(Random.Range(spawnTimer, spawnTimer + 2f));
         }
     }

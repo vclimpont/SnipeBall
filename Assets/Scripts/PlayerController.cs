@@ -6,11 +6,23 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject blobPrefab;
     public float force;
+    public float shootCooldown = 1f;
+
+    private LineRenderer line;
 
     private GameObject currentBlob;
     private Touch currentTouch;
 
     private Vector3 dragStartPos;
+
+    private Coroutine cOnCooldown;
+
+    private bool dragStarted;
+
+    void Awake()
+    {
+        line = GetComponent<LineRenderer>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +51,6 @@ public class PlayerController : MonoBehaviour
                     break;
                 case TouchPhase.Ended:
                     OnDragEnd();
-                    InstantiateNewBall();
                     Debug.Log("Ended");
                     break;
                 case TouchPhase.Canceled:
@@ -59,22 +70,32 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             OnDragEnd(true);
-            InstantiateNewBall();
         }
     }
 
     void OnDragStart(bool mouse = false)
     {
+        if (cOnCooldown != null) return;
+        dragStarted = true;
+
         dragStartPos = Camera.main.ScreenToWorldPoint(mouse ? Input.mousePosition : (Vector3)currentTouch.position);
         dragStartPos.z = 0f;
-        Debug.Log(dragStartPos);
+
+        line.positionCount = 2;
+        line.SetPosition(0, transform.position);
+        line.SetPosition(1, transform.position);
     }
 
     void OnDragMoved(bool mouse = false)
     {
+        if (!dragStarted) return;
+
         //Move blob according to current touch position
         Vector3 currentDragPosition = Camera.main.ScreenToWorldPoint(mouse ? Input.mousePosition : (Vector3)currentTouch.position);
         currentDragPosition.z = 0;
+
+        Vector3 localDragPosition = currentDragPosition + (transform.position - dragStartPos);
+        line.SetPosition(1, transform.position + Vector3.ClampMagnitude((transform.position - localDragPosition), 10f));
 
         // Blob rotation
         float angle = Vector3.Angle(Vector3.up, (dragStartPos - currentDragPosition).normalized);
@@ -86,17 +107,38 @@ public class PlayerController : MonoBehaviour
 
     void OnDragEnd(bool mouse = false)
     {
+        if (!dragStarted) return;
+
         Vector3 dragReleasePos = Camera.main.ScreenToWorldPoint(mouse ? Input.mousePosition : (Vector3)currentTouch.position);
         dragReleasePos.z = 0f;
 
+        line.positionCount = 0;
+
+        if (Vector3.Distance(dragStartPos, dragReleasePos) < 0.5f)
+        {
+            Destroy(currentBlob);
+            return;
+        }
+
         Vector3 shootDirection = (dragStartPos - dragReleasePos).normalized;
-        currentBlob.GetComponent<CircleCollider2D>().enabled = true;
-        currentBlob.GetComponent<Rigidbody2D>().gravityScale = -1f;
-        currentBlob.GetComponent<Rigidbody2D>().AddForce(shootDirection * force, ForceMode2D.Impulse);
+        currentBlob.GetComponent<Blob>().Shoot(shootDirection, force);
+
+        cOnCooldown = StartCoroutine(COnCooldown());
+        dragStarted = false;
+
+        InstantiateNewBall();
     }
 
     void InstantiateNewBall()
     {
         currentBlob = Instantiate(blobPrefab, transform);
+    }
+
+    IEnumerator COnCooldown()
+    {
+        yield return new WaitForSeconds(shootCooldown);
+
+        cOnCooldown = null;
+        yield return null;
     }
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Blob : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private CircleCollider2D circleCollider;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
     }
 
     public void Die()
@@ -17,11 +19,11 @@ public class Blob : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public void Shoot(Vector3 direction, float force)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            Die();
-        }
+        circleCollider.enabled = true;
+        rb.gravityScale = -1f;
+        rb.AddForce(direction * force, ForceMode2D.Impulse);
     }
+
 }
