@@ -103,6 +103,8 @@ public class PlayerController : MonoBehaviour
         currentBlob.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         //Blob stretch
+        float dist = Vector3.Distance(dragStartPos, currentDragPosition);
+        currentBlob.GetComponent<Blob>().Stretch(dist);
     }
 
     void OnDragEnd(bool mouse = false)
@@ -117,6 +119,8 @@ public class PlayerController : MonoBehaviour
         if (Vector3.Distance(dragStartPos, dragReleasePos) < 0.5f)
         {
             Destroy(currentBlob);
+            InstantiateNewBall();
+            dragStarted = false;
             return;
         }
 
@@ -125,8 +129,6 @@ public class PlayerController : MonoBehaviour
 
         cOnCooldown = StartCoroutine(COnCooldown());
         dragStarted = false;
-
-        InstantiateNewBall();
     }
 
     void InstantiateNewBall()
@@ -137,6 +139,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator COnCooldown()
     {
         yield return new WaitForSeconds(shootCooldown);
+        InstantiateNewBall();
 
         cOnCooldown = null;
         yield return null;
