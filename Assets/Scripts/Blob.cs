@@ -26,7 +26,7 @@ public class Blob : MonoBehaviour
         blobMesh.transform.localScale = Vector3.one;
 
         circleCollider.enabled = true;
-        rb.gravityScale = -1f * GameManager.gravityMultiplier;
+        rb.gravityScale = -1f;
         rb.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
