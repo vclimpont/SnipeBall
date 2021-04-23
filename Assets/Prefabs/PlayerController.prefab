@@ -48,6 +48,38 @@ MonoBehaviour:
     type: 3}
   force: 15
   shootCooldown: 0.2
+  powerTime: 10
+  pcaList:
+  - powerColor: 0
+    blobMaterial: {fileID: 2100000, guid: d357a802e5ef4d44d829d89dfb1a341c, type: 2}
+    blobBackColor: {r: 0.8980392, g: 0.34901962, b: 0.34901962, a: 0}
+    lineRendererStartColor: {r: 0, g: 0, b: 0, a: 0}
+    lineRendererEndColor: {r: 0, g: 0, b: 0, a: 0}
+    particlesColor: {r: 0, g: 0, b: 0, a: 0}
+  - powerColor: 1
+    blobMaterial: {fileID: 2100000, guid: 7eacd97105329444bb40f45b494a1eb7, type: 2}
+    blobBackColor: {r: 0.34901962, g: 0.7665689, b: 0.8980392, a: 0}
+    lineRendererStartColor: {r: 0, g: 0, b: 0, a: 0}
+    lineRendererEndColor: {r: 0, g: 0, b: 0, a: 0}
+    particlesColor: {r: 0, g: 0, b: 0, a: 0}
+  - powerColor: 2
+    blobMaterial: {fileID: 2100000, guid: b3e7f4ba6e1f8a34baf18be7e5780a70, type: 2}
+    blobBackColor: {r: 0, g: 0, b: 0, a: 0}
+    lineRendererStartColor: {r: 0, g: 0, b: 0, a: 0}
+    lineRendererEndColor: {r: 0, g: 0, b: 0, a: 0}
+    particlesColor: {r: 0, g: 0, b: 0, a: 0}
+  - powerColor: 3
+    blobMaterial: {fileID: 2100000, guid: 6540890e4f106bd4cb8df202c9e7a25a, type: 2}
+    blobBackColor: {r: 0, g: 0, b: 0, a: 0}
+    lineRendererStartColor: {r: 0, g: 0, b: 0, a: 0}
+    lineRendererEndColor: {r: 0, g: 0, b: 0, a: 0}
+    particlesColor: {r: 0, g: 0, b: 0, a: 0}
+  - powerColor: 4
+    blobMaterial: {fileID: 2100000, guid: 58bc7c70124b3094e89051683f92823a, type: 2}
+    blobBackColor: {r: 0, g: 0, b: 0, a: 0}
+    lineRendererStartColor: {r: 0, g: 0, b: 0, a: 0}
+    lineRendererEndColor: {r: 0, g: 0, b: 0, a: 0}
+    particlesColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!120 &2480751685664368764
 LineRenderer:
   m_ObjectHideFlags: 0

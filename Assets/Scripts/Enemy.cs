@@ -22,6 +22,11 @@ public class Enemy : MonoBehaviour
         rb.AddForce((Vector2)TargetDirection * (baseSpeed * Random.Range(1f, 1f)), ForceMode2D.Impulse);
     }
 
+    void Update()
+    {
+        rb.gravityScale = 0.5f * GameManager.gravityMultiplier;
+    }
+
     void Die()
     {
         isDead = true;

@@ -2,26 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct PowerColorAttributes
+{
+    public PlayerController.PowerColor powerColor;
+    public Material blobMaterial;
+    public Color blobBackColor;
+    public Color lineRendererStartColor;
+    public Color lineRendererEndColor;
+    public Color particlesColor;
+}
+
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
+    public enum PowerColor { RED, BLUE, GREEN, YELLOW, ORANGE }
+
     public GameObject blobPrefab;
     public float force;
     public float shootCooldown = 1f;
+    public float powerTime = 10f;
+    public List<PowerColorAttributes> pcaList;
+
+    private Coroutine cOnCooldown;
+    private Coroutine cStartPower;
 
     private LineRenderer line;
 
+    private Dictionary<PowerColor, PowerColorAttributes> dictPowerAttributes;
     private GameObject currentBlob;
     private Touch currentTouch;
+    private PowerColor currentPowerColor;
 
     private Vector3 dragStartPos;
-
-    private Coroutine cOnCooldown;
 
     private bool dragStarted;
 
     void Awake()
     {
-        line = GetComponent<LineRenderer>();
+        if(Instance == null)
+        {
+            Instance = this;
+            line = GetComponent<LineRenderer>();
+            currentPowerColor = PowerColor.RED;
+        }
     }
 
     // Start is called before the first frame update
@@ -142,6 +167,28 @@ public class PlayerController : MonoBehaviour
         InstantiateNewBall();
 
         cOnCooldown = null;
+        yield return null;
+    }
+
+    public void ChangePowerColor(PowerColor _pc)
+    {
+        if(cStartPower != null)
+        {
+            StopCoroutine(cStartPower);
+        }
+
+        cStartPower = StartCoroutine(CStartPower(_pc));
+    }
+
+    IEnumerator CStartPower(PowerColor _pc)
+    {
+        currentPowerColor = _pc;
+
+        yield return new WaitForSeconds(powerTime);
+
+        currentPowerColor = PowerColor.RED;
+
+        cStartPower = null;
         yield return null;
     }
 }
