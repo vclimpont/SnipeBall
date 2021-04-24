@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Blob : MonoBehaviour
 {
-    [SerializeField] private GameObject blobMesh = null;
     [SerializeField] private SkinnedMeshRenderer meshRenderer = null;
+    public GameObject blobMesh = null;
 
     private Rigidbody2D rb;
     private CircleCollider2D circleCollider;
@@ -24,8 +24,6 @@ public class Blob : MonoBehaviour
 
     public void Shoot(Vector3 direction, float force)
     {
-        blobMesh.transform.localScale = Vector3.one;
-
         circleCollider.enabled = true;
         rb.gravityScale = -1f;
         rb.AddForce(direction * force, ForceMode2D.Impulse);
