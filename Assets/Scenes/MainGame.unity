@@ -1081,6 +1081,11 @@ PrefabInstance:
       propertyPath: blobBackgroundSprite
       value: 
       objectReference: {fileID: 836733294}
+    - target: {fileID: 120405654438978333, guid: d183accf77a6fed419c568985868e7db,
+        type: 3}
+      propertyPath: powerTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 120405654438978334, guid: d183accf77a6fed419c568985868e7db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1218,7 +1223,7 @@ PrefabInstance:
     - target: {fileID: 5541464079848117269, guid: e8a7b677b0696814f908206ce048ee4b,
         type: 3}
       propertyPath: powerColor
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8a7b677b0696814f908206ce048ee4b, type: 3}

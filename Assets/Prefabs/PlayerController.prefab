@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blobPrefab: {fileID: 6605093110341551874, guid: 291791d8b50e0614aab932c26490d831,
     type: 3}
+  blobBackgroundSprite: {fileID: 0}
   force: 15
   shootCooldown: 0.2
   powerTime: 10
@@ -80,6 +81,8 @@ MonoBehaviour:
     lineRendererStartColor: {r: 1, g: 0.5187561, b: 0.2980392, a: 1}
     lineRendererEndColor: {r: 1, g: 0.7698941, b: 0.64705884, a: 1}
     particlesColor: {r: 1, g: 0.5176471, b: 0.29803923, a: 1}
+  dragStartPos: {x: 0, y: 0, z: 0}
+  dragStarted: 0
 --- !u!120 &2480751685664368764
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -119,9 +122,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
