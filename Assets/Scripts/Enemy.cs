@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         rb.gravityScale = 0.5f * GameManager.gravityMultiplier;
+        rb.drag = GameManager.dragMultiplier;
     }
 
     void Die()

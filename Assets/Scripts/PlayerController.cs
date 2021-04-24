@@ -25,12 +25,13 @@ public class PlayerController : MonoBehaviour
     public float powerTime = 10f;
     public List<PowerColorAttributes> pcaList;
 
+    public Dictionary<PowerColor, PowerColorAttributes> DictPowerAttributes { get; private set; }
+
     public Coroutine cOnCooldown { get; private set; }
     private Coroutine cStartPower;
 
     public Touch currentTouch;
 
-    private Dictionary<PowerColor, PowerColorAttributes> dictPowerAttributes;
     private GameObject currentBlob;
     private PowerColor currentPowerColor;
     private DraggableComponent currentDraggableComponent;
@@ -40,9 +41,7 @@ public class PlayerController : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-            dictPowerAttributes = new Dictionary<PowerColor, PowerColorAttributes>();
-            currentPowerColor = PowerColor.RED;
-            currentDraggableComponent = new RedDraggable(this);
+            DictPowerAttributes = new Dictionary<PowerColor, PowerColorAttributes>();
         }
     }
 
@@ -50,6 +49,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SetPowerColorAttributes();
+
+        currentPowerColor = PowerColor.RED;
+        currentDraggableComponent = new RedDraggable(this);
         InstantiateNewBlob();
     }
 
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (PowerColorAttributes pca in pcaList)
         {
-            dictPowerAttributes.Add(pca.powerColor, pca);
+            DictPowerAttributes.Add(pca.powerColor, pca);
         }
     }
 
@@ -127,7 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         currentBlob = Instantiate(blobPrefab, transform);
 
-        currentBlob.GetComponent<Blob>().SetColorAttributes(dictPowerAttributes[currentPowerColor]);
+        currentBlob.GetComponent<Blob>().SetColorAttributes(DictPowerAttributes[currentPowerColor]);
     }
 
     public void StartCooldown()

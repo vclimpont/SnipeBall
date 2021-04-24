@@ -741,7 +741,7 @@ MonoBehaviour:
   anchorRight: {fileID: 1723159964}
   anchorBotLeft: {fileID: 1667966853}
   anchorBotRight: {fileID: 1851894748}
-  timeBeforeSpawningFirstWall: 15
+  timeBeforeSpawningFirstWall: 0
   spawnMinRate: 5
   spawnMaxRate: 15
   wallLifeTimeMin: 7
@@ -1209,6 +1209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: P_BluePower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541464079848117269, guid: e8a7b677b0696814f908206ce048ee4b,
+        type: 3}
+      propertyPath: powerColor
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8a7b677b0696814f908206ce048ee4b, type: 3}
