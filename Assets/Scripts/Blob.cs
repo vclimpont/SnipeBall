@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blob : MonoBehaviour
+public class Blob : ScorableComponent
 {
     [SerializeField] private SkinnedMeshRenderer meshRenderer = null;
     public GameObject blobMesh = null;

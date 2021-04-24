@@ -83,6 +83,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef428d7946438e4f964a022fa44ee9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scorePrefab: {fileID: 7836130561682866591, guid: bf50c81e7af33754ea086925f668da85,
+    type: 3}
+  timerReset: 10
   baseSpeed: 5
   maxSpeed: 5
 --- !u!1001 &794733203653258214

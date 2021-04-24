@@ -133,6 +133,10 @@ public class PlayerController : MonoBehaviour
         if (currentBlob == null) return;
 
         blobBackgroundSprite.color = DictPowerAttributes[currentPowerColor].blobBackColor;
+
+        Color healthColor = DictPowerAttributes[currentPowerColor].particlesColor;
+        UIManager.Instance.healthSprite.color = new Color(healthColor.r, healthColor.g, healthColor.b, 175f);
+
         currentBlob.GetComponent<Blob>().SetColorAttributes(DictPowerAttributes[currentPowerColor]);
     }
 
