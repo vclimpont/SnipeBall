@@ -11,8 +11,9 @@ public class Enemy : ScorableComponent
 
     private Rigidbody2D rb;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
     }
 

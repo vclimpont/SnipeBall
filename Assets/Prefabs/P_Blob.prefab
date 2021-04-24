@@ -221,12 +221,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b1874c9d4708441ba014a23b78e55d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blobMesh: {fileID: 3330875592341881825}
   scorePrefab: {fileID: 7836130561682866591, guid: bf50c81e7af33754ea086925f668da85,
     type: 3}
   timerReset: 10
   meshRenderer: {fileID: 3447016645548099237}
   trailRenderer: {fileID: 3816815574514105926}
-  blobMesh: {fileID: 3330875592341881825}
 --- !u!1001 &3332510758728037837
 PrefabInstance:
   m_ObjectHideFlags: 0

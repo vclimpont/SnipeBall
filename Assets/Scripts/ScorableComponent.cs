@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScorableComponent : MonoBehaviour
+public class ScorableComponent : StretchableComponent
 {
     public GameObject scorePrefab;
     public float timerReset = 2f;
@@ -21,8 +21,10 @@ public class ScorableComponent : MonoBehaviour
         yield return null;
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D col)
+    protected override void OnCollisionEnter2D(Collision2D col)
     {
+        base.OnCollisionEnter2D(col);
+
         ScorableComponent sc = col.transform.GetComponent<ScorableComponent>();
         if(sc != null)
         {

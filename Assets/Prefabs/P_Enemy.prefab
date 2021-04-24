@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef428d7946438e4f964a022fa44ee9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blobMesh: {fileID: 794733203653160276}
   scorePrefab: {fileID: 7836130561682866591, guid: bf50c81e7af33754ea086925f668da85,
     type: 3}
   timerReset: 10
@@ -153,6 +154,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 711787b6963ad1242b1898394fe2baa6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 032e9c3d6b8f7bd4281b52741574f3af, type: 3}
+--- !u!1 &794733203653160276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100018, guid: 032e9c3d6b8f7bd4281b52741574f3af,
+    type: 3}
+  m_PrefabInstance: {fileID: 794733203653258214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &794733203653128564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400018, guid: 032e9c3d6b8f7bd4281b52741574f3af,

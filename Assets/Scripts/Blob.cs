@@ -7,13 +7,11 @@ public class Blob : ScorableComponent
     [SerializeField] private SkinnedMeshRenderer meshRenderer = null;
     [SerializeField] private TrailRenderer trailRenderer = null;
 
-    public GameObject blobMesh = null;
-
     private Rigidbody2D rb;
-    private CircleCollider2D circleCollider;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
     }
