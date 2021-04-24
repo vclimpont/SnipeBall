@@ -11,7 +11,17 @@ public class ScorableComponent : MonoBehaviour
 
     private int currentScoreReward = 0;
 
-    void OnCollisionEnter2D(Collision2D col)
+    IEnumerator CStartTimer()
+    {
+        yield return new WaitForSeconds(timerReset);
+
+        currentScoreReward = 0;
+        cStartTimer = null;
+
+        yield return null;
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D col)
     {
         ScorableComponent sc = col.transform.GetComponent<ScorableComponent>();
         if(sc != null)
@@ -34,15 +44,5 @@ public class ScorableComponent : MonoBehaviour
             }
             cStartTimer = StartCoroutine(CStartTimer());
         }
-    }
-
-    IEnumerator CStartTimer()
-    {
-        yield return new WaitForSeconds(timerReset);
-
-        currentScoreReward = 0;
-        cStartTimer = null;
-
-        yield return null;
     }
 }

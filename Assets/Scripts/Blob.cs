@@ -5,6 +5,8 @@ using UnityEngine;
 public class Blob : ScorableComponent
 {
     [SerializeField] private SkinnedMeshRenderer meshRenderer = null;
+    [SerializeField] private TrailRenderer trailRenderer = null;
+
     public GameObject blobMesh = null;
 
     private Rigidbody2D rb;
@@ -39,5 +41,7 @@ public class Blob : ScorableComponent
     public void SetColorAttributes(PowerColorAttributes pca)
     {
         meshRenderer.material = pca.blobMaterial;
+        trailRenderer.startColor = pca.lineRendererStartColor;
+        trailRenderer.endColor = pca.lineRendererEndColor;
     }
 }

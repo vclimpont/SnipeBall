@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
     public static int maxHealth = 10;
     public static int score = 0;
 
+    void Awake()
+    {
+        currentHealth = maxHealth;
+        score = 0;
+    }
+
     public static void RecoverHealth()
     {
         if (currentHealth >= maxHealth) return;
