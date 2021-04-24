@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour
         if(cStartPower != null)
         {
             StopCoroutine(cStartPower);
+            currentDraggableComponent.ResetPower();
         }
 
         cStartPower = StartCoroutine(CStartPower(_powerColor));

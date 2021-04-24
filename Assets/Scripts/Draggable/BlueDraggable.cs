@@ -95,6 +95,8 @@ public class BlueDraggable : DraggableComponent
 
     public override void ResetPower()
     {
+        if (line2 == null) return;
+
         GameObject.Destroy(line2.gameObject);
     }
 }
