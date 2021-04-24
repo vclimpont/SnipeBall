@@ -57,6 +57,7 @@ public class YellowDraggable : DraggableComponent
         Vector3 shootDirection = (pc.dragStartPos - dragReleasePos).normalized;
         currentBlob.GetComponent<Blob>().Shoot(shootDirection, pc.force);
         currentBlob.GetComponent<Blob>().blobMesh.transform.localScale = Vector3.one * currentScaleMultiplier;
+        currentBlob.GetComponent<Blob>().baseScale = Vector3.one * currentScaleMultiplier;
         currentBlob.GetComponent<CircleCollider2D>().radius = 0.5f * currentScaleMultiplier;
 
         pc.StartCooldown();

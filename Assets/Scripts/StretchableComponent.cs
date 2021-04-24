@@ -5,6 +5,7 @@ using UnityEngine;
 public class StretchableComponent : MonoBehaviour
 {
     public GameObject blobMesh = null;
+    public Vector3 baseScale = Vector3.one;
 
     protected CircleCollider2D circleCollider;
 
@@ -22,8 +23,8 @@ public class StretchableComponent : MonoBehaviour
             StopCoroutine(cStretchOnImpact);
         }
 
-        float x = vertical ? 0.66f : 1.33f;
-        float y = vertical ? 1.33f : 0.66f;
+        float x = vertical ? baseScale.x - 0.33f : baseScale.x + 0.33f;
+        float y = vertical ? baseScale.x + 0.33f : baseScale.x - 0.33f;
         cStretchOnImpact = StartCoroutine(CStretch(x, y));
     }
 
@@ -34,7 +35,7 @@ public class StretchableComponent : MonoBehaviour
 
         while (dt <= stretchSpeed)
         {
-            blobMesh.transform.localScale = Vector3.Lerp(Vector3.one, new Vector3(x, y, 1), dt / stretchSpeed);
+            blobMesh.transform.localScale = Vector3.Lerp(baseScale, new Vector3(x, y, 1), dt / stretchSpeed);
             dt += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -46,12 +47,12 @@ public class StretchableComponent : MonoBehaviour
 
         while (dt <= stretchSpeed)
         {
-            blobMesh.transform.localScale = Vector3.Lerp(new Vector3(x, y, 1), Vector3.one, dt / stretchSpeed);
+            blobMesh.transform.localScale = Vector3.Lerp(new Vector3(x, y, 1), baseScale, dt / stretchSpeed);
             dt += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
-        blobMesh.transform.localScale = Vector3.one;
+        blobMesh.transform.localScale = baseScale;
 
         cStretchOnImpact = null;
         yield return null;
