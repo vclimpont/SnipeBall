@@ -48,6 +48,9 @@ public class BlueDraggable : DraggableComponent
 
         Vector3 localDragPosition = currentDragPosition + (pc.transform.position - pc.dragStartPos);
         line.SetPosition(1, pc.transform.position + (Quaternion.Euler(0, 0, 10f) * Vector3.ClampMagnitude((pc.transform.position - localDragPosition), 10f)));
+
+        line2.positionCount = 2;
+        line2.SetPosition(0, pc.transform.position);
         line2.SetPosition(1, pc.transform.position + (Quaternion.Euler(0, 0, -10f) * Vector3.ClampMagnitude((pc.transform.position - localDragPosition), 10f)));
 
         // Blob rotation
