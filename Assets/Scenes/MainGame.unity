@@ -956,7 +956,7 @@ MonoBehaviour:
   anchorRight: {fileID: 1723159964}
   anchorBotLeft: {fileID: 1667966853}
   anchorBotRight: {fileID: 1851894748}
-  timeBeforeSpawningFirstWall: 0
+  timeBeforeSpawningFirstWall: 7
   spawnMinRate: 5
   spawnMaxRate: 15
   wallLifeTimeMin: 7
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   anchorRight: {fileID: 1723159964}
   anchorBotLeft: {fileID: 1667966853}
   anchorBotRight: {fileID: 1851894748}
-  timeBeforeSpawningFirstPower: 0
+  timeBeforeSpawningFirstPower: 10
   spawnMinRate: 10
   spawnMaxRate: 20
   powerLifeTime: 20
@@ -1698,6 +1698,11 @@ PrefabInstance:
         type: 3}
       propertyPath: pcaList.Array.data[0].lineRendererEndColor.a
       value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 120405654438978333, guid: d183accf77a6fed419c568985868e7db,
+        type: 3}
+      propertyPath: shootCooldown
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 120405654438978334, guid: d183accf77a6fed419c568985868e7db,
         type: 3}

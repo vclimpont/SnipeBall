@@ -65,7 +65,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.2
+  m_GravityScale: 0.1
   m_Material: {fileID: 6200000, guid: f78b53856390f5f499de4052f8398cf1, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -88,8 +88,8 @@ MonoBehaviour:
   scorePrefab: {fileID: 7836130561682866591, guid: bf50c81e7af33754ea086925f668da85,
     type: 3}
   timerReset: 10
-  baseSpeed: 5
-  maxSpeed: 5
+  baseSpeed: 4.5
+  maxSpeed: 7
 --- !u!1001 &794733203653258214
 PrefabInstance:
   m_ObjectHideFlags: 0
