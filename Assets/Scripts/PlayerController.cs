@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public enum PowerColor { RED, BLUE, GREEN, YELLOW, ORANGE }
 
     public GameObject blobPrefab;
+    public SpriteRenderer blobBackgroundSprite; 
     public float force;
     public float shootCooldown = 1f;
     public float powerTime = 10f;
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine cStartPower;
 
     public Touch currentTouch;
+    public Vector3 dragStartPos;
+    public bool dragStarted;
 
     private GameObject currentBlob;
     private PowerColor currentPowerColor;
@@ -125,11 +128,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void SetCurrentBlobAttributes()
+    {
+        if (currentBlob == null) return;
+
+        blobBackgroundSprite.color = DictPowerAttributes[currentPowerColor].blobBackColor;
+        currentBlob.GetComponent<Blob>().SetColorAttributes(DictPowerAttributes[currentPowerColor]);
+    }
+
     public void InstantiateNewBlob()
     {
         currentBlob = Instantiate(blobPrefab, transform);
-
-        currentBlob.GetComponent<Blob>().SetColorAttributes(DictPowerAttributes[currentPowerColor]);
+        SetCurrentBlobAttributes();
     }
 
     public void StartCooldown()
@@ -139,6 +149,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator COnCooldown()
     {
+        currentBlob = null;
+
         yield return new WaitForSeconds(shootCooldown);
         InstantiateNewBlob();
 
@@ -160,6 +172,7 @@ public class PlayerController : MonoBehaviour
     {
         currentPowerColor = _powerColor;
         currentDraggableComponent = GetCurrentDraggableComponent(_powerColor);
+        SetCurrentBlobAttributes();
 
         currentDraggableComponent.ActivePower();
 
@@ -169,6 +182,7 @@ public class PlayerController : MonoBehaviour
 
         currentPowerColor = PowerColor.RED;
         currentDraggableComponent = new RedDraggable(this);
+        SetCurrentBlobAttributes();
 
         cStartPower = null;
         yield return null;

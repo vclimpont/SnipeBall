@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 836733295}
   - component: {fileID: 836733294}
   m_Layer: 0
-  m_Name: BallBackground
+  m_Name: BlobBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1076,6 +1076,11 @@ PrefabInstance:
       propertyPath: shootCooldown
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 120405654438978333, guid: d183accf77a6fed419c568985868e7db,
+        type: 3}
+      propertyPath: blobBackgroundSprite
+      value: 
+      objectReference: {fileID: 836733294}
     - target: {fileID: 120405654438978334, guid: d183accf77a6fed419c568985868e7db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1213,7 +1218,7 @@ PrefabInstance:
     - target: {fileID: 5541464079848117269, guid: e8a7b677b0696814f908206ce048ee4b,
         type: 3}
       propertyPath: powerColor
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8a7b677b0696814f908206ce048ee4b, type: 3}

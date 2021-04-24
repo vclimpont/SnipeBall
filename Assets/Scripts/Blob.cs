@@ -5,6 +5,7 @@ using UnityEngine;
 public class Blob : MonoBehaviour
 {
     [SerializeField] private GameObject blobMesh = null;
+    [SerializeField] private SkinnedMeshRenderer meshRenderer = null;
 
     private Rigidbody2D rb;
     private CircleCollider2D circleCollider;
@@ -39,6 +40,6 @@ public class Blob : MonoBehaviour
 
     public void SetColorAttributes(PowerColorAttributes pca)
     {
-
+        meshRenderer.material = pca.blobMaterial;
     }
 }

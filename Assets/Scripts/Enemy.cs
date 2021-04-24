@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
     public Vector3 TargetDirection { get; set; }
 
     private Rigidbody2D rb;
-    private bool isDead;
 
     void Awake()
     {
@@ -26,11 +25,5 @@ public class Enemy : MonoBehaviour
     {
         rb.gravityScale = 0.5f * GameManager.gravityMultiplier;
         rb.drag = GameManager.dragMultiplier;
-    }
-
-    void Die()
-    {
-        isDead = true;
-        Destroy(gameObject);
     }
 }
