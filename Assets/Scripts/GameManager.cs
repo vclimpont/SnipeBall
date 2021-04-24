@@ -18,6 +18,12 @@ public class GameManager : MonoBehaviour
         score = 0;
     }
 
+    public static void GainScore(int scoreAmount)
+    {
+        score += scoreAmount;
+        UIManager.Instance.GainScore();
+    }
+
     public static void RecoverHealth()
     {
         if (currentHealth >= maxHealth) return;

@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public Image healthSprite;
     public TextMeshProUGUI tmp;
+    private Animator tmpAnimator;
 
     public static UIManager Instance;
 
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            tmpAnimator = tmp.transform.GetComponent<Animator>();
         }
     }
 
@@ -23,5 +25,10 @@ public class UIManager : MonoBehaviour
     {
         healthSprite.fillAmount = (GameManager.currentHealth * 1.0f) / (GameManager.maxHealth * 1.0f);
         tmp.text = "" + GameManager.score;
+    }
+
+    public void GainScore()
+    {
+        tmpAnimator.SetTrigger("TrgStretch");
     }
 }

@@ -38,7 +38,7 @@ public class ScorableComponent : StretchableComponent
                 GameManager.RecoverHealth();
             }
 
-            GameManager.score += currentScoreReward;
+            GameManager.GainScore(currentScoreReward);
 
             if (cStartTimer != null)
             {

@@ -7,24 +7,21 @@ public class StretchableComponent : MonoBehaviour
     public GameObject blobMesh = null;
     public Vector3 baseScale = Vector3.one;
 
-    protected CircleCollider2D circleCollider;
-
     private Coroutine cStretchOnImpact;
 
     protected virtual void Awake()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
     }
 
-    private void StretchOnImpact(bool vertical)
+    protected void StretchOnImpact(bool vertical, float stretchValue)
     {
         if(cStretchOnImpact != null)
         {
             StopCoroutine(cStretchOnImpact);
         }
 
-        float x = vertical ? baseScale.x - 0.33f : baseScale.x + 0.33f;
-        float y = vertical ? baseScale.x + 0.33f : baseScale.x - 0.33f;
+        float x = vertical ? baseScale.x - stretchValue : baseScale.x + stretchValue;
+        float y = vertical ? baseScale.x + stretchValue : baseScale.x - stretchValue;
         cStretchOnImpact = StartCoroutine(CStretch(x, y));
     }
 
@@ -60,10 +57,15 @@ public class StretchableComponent : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
     {
+        Rigidbody2D rbCol = col.transform.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        if ((rbCol != null && rbCol.velocity.sqrMagnitude < 1f) && (rb.velocity.sqrMagnitude < 2f)) return;
+
         Vector3 upDirection = transform.up.normalized;
-        Vector3 impactDirection = ((Vector3)col.GetContact(0).point - (transform.position - (Vector3)circleCollider.offset)).normalized;
+        Vector3 impactDirection = ((Vector3)col.GetContact(0).point - transform.position).normalized;
 
         float absDot = Mathf.Abs(Vector3.Dot(upDirection, impactDirection));
-        StretchOnImpact(absDot >= 0.3f && absDot <= 0.6f);
+        StretchOnImpact(absDot >= 0.3f && absDot <= 0.6f, 0.33f);
     }
 }

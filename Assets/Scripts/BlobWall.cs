@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlobWall : MonoBehaviour
+public class BlobWall : StretchableWall
 {
     public int side;
     public float lifeTime;

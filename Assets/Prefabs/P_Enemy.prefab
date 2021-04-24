@@ -47,7 +47,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.34}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!50 &935714258757944046
@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blobMesh: {fileID: 794733203653160276}
+  baseScale: {x: 1, y: 1, z: 1}
   scorePrefab: {fileID: 7836130561682866591, guid: bf50c81e7af33754ea086925f668da85,
     type: 3}
   timerReset: 10
@@ -106,7 +107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 032e9c3d6b8f7bd4281b52741574f3af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 032e9c3d6b8f7bd4281b52741574f3af, type: 3}
       propertyPath: m_LocalPosition.z

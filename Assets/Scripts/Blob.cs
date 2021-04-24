@@ -8,6 +8,7 @@ public class Blob : ScorableComponent
     [SerializeField] private TrailRenderer trailRenderer = null;
 
     private Rigidbody2D rb;
+    private CircleCollider2D circleCollider;
 
     protected override void Awake()
     {

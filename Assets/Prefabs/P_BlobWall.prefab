@@ -76,6 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1276169e84d8fe49837515dee40c986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blobMesh: {fileID: 7398663747440084572}
+  baseScale: {x: 1, y: 1, z: 1}
   side: 0
   lifeTime: 0
 --- !u!1001 &7398663745374226903
