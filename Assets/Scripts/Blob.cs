@@ -36,4 +36,9 @@ public class Blob : MonoBehaviour
         float stretchY = Mathf.Clamp01(distValue * 0.5f) * 0.75f;
         blobMesh.transform.localScale = Vector3.one + new Vector3(-stretchX, stretchY, 0f);
     }
+
+    public void SetColorAttributes(PowerColorAttributes pca)
+    {
+
+    }
 }

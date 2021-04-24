@@ -25,34 +25,32 @@ public class PlayerController : MonoBehaviour
     public float powerTime = 10f;
     public List<PowerColorAttributes> pcaList;
 
-    private Coroutine cOnCooldown;
+    public Coroutine cOnCooldown { get; private set; }
     private Coroutine cStartPower;
 
-    private LineRenderer line;
+    public Touch currentTouch;
 
     private Dictionary<PowerColor, PowerColorAttributes> dictPowerAttributes;
     private GameObject currentBlob;
-    private Touch currentTouch;
     private PowerColor currentPowerColor;
-
-    private Vector3 dragStartPos;
-
-    private bool dragStarted;
+    private DraggableComponent currentDraggableComponent;
 
     void Awake()
     {
         if(Instance == null)
         {
             Instance = this;
-            line = GetComponent<LineRenderer>();
+            dictPowerAttributes = new Dictionary<PowerColor, PowerColorAttributes>();
             currentPowerColor = PowerColor.RED;
+            currentDraggableComponent = new RedDraggable(this);
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        InstantiateNewBall();
+        SetPowerColorAttributes();
+        InstantiateNewBlob();
     }
 
     // Update is called once per frame
@@ -65,17 +63,17 @@ public class PlayerController : MonoBehaviour
             switch (currentTouch.phase)
             {
                 case TouchPhase.Began:
-                    OnDragStart();
+                    currentDraggableComponent.OnDragStart(currentBlob);
                     Debug.Log("Began");
                     break;
                 case TouchPhase.Moved:
-                    OnDragMoved();
+                    currentDraggableComponent.OnDragMoved(currentBlob);
                     break;
                 case TouchPhase.Stationary:
                     Debug.Log("Stationary");
                     break;
                 case TouchPhase.Ended:
-                    OnDragEnd();
+                    currentDraggableComponent.OnDragEnd(currentBlob);
                     Debug.Log("Ended");
                     break;
                 case TouchPhase.Canceled:
@@ -86,109 +84,93 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            OnDragStart(true);
+            currentDraggableComponent.OnDragStart(currentBlob, true);
         }
         else if(Input.GetMouseButton(0))
         {
-            OnDragMoved(true);
+            currentDraggableComponent.OnDragMoved(currentBlob, true);
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            OnDragEnd(true);
+            currentDraggableComponent.OnDragEnd(currentBlob, true);
         }
     }
 
-    void OnDragStart(bool mouse = false)
+    void SetPowerColorAttributes()
     {
-        if (cOnCooldown != null) return;
-        dragStarted = true;
-
-        dragStartPos = Camera.main.ScreenToWorldPoint(mouse ? Input.mousePosition : (Vector3)currentTouch.position);
-        dragStartPos.z = 0f;
-
-        line.positionCount = 2;
-        line.SetPosition(0, transform.position);
-        line.SetPosition(1, transform.position);
-    }
-
-    void OnDragMoved(bool mouse = false)
-    {
-        if (!dragStarted) return;
-
-        //Move blob according to current touch position
-        Vector3 currentDragPosition = Camera.main.ScreenToWorldPoint(mouse ? Input.mousePosition : (Vector3)currentTouch.position);
-        currentDragPosition.z = 0;
-
-        Vector3 localDragPosition = currentDragPosition + (transform.position - dragStartPos);
-        line.SetPosition(1, transform.position + Vector3.ClampMagnitude((transform.position - localDragPosition), 10f));
-
-        // Blob rotation
-        float angle = Vector3.Angle(Vector3.up, (dragStartPos - currentDragPosition).normalized);
-        angle = currentDragPosition.x < dragStartPos.x ? 360f - angle : angle;
-        currentBlob.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        //Blob stretch
-        float dist = Vector3.Distance(dragStartPos, currentDragPosition);
-        currentBlob.GetComponent<Blob>().Stretch(dist);
-    }
-
-    void OnDragEnd(bool mouse = false)
-    {
-        if (!dragStarted) return;
-
-        Vector3 dragReleasePos = Camera.main.ScreenToWorldPoint(mouse ? Input.mousePosition : (Vector3)currentTouch.position);
-        dragReleasePos.z = 0f;
-
-        line.positionCount = 0;
-
-        if (Vector3.Distance(dragStartPos, dragReleasePos) < 0.5f)
+        foreach (PowerColorAttributes pca in pcaList)
         {
-            Destroy(currentBlob);
-            InstantiateNewBall();
-            dragStarted = false;
-            return;
+            dictPowerAttributes.Add(pca.powerColor, pca);
         }
-
-        Vector3 shootDirection = (dragStartPos - dragReleasePos).normalized;
-        currentBlob.GetComponent<Blob>().Shoot(shootDirection, force);
-
-        cOnCooldown = StartCoroutine(COnCooldown());
-        dragStarted = false;
     }
 
-    void InstantiateNewBall()
+    DraggableComponent GetCurrentDraggableComponent(PowerColor _powerColor)
+    {
+        switch (_powerColor)
+        {
+            case PowerColor.RED:
+                return new RedDraggable(this);
+            case PowerColor.BLUE:
+                return new BlueDraggable(this);
+            case PowerColor.GREEN:
+                return new GreenDraggable(this);
+            case PowerColor.YELLOW:
+                return new YellowDraggable(this);
+            case PowerColor.ORANGE:
+                return new OrangeDraggable(this);
+            default:
+                return null;
+        }
+    }
+
+    public void InstantiateNewBlob()
     {
         currentBlob = Instantiate(blobPrefab, transform);
+
+        currentBlob.GetComponent<Blob>().SetColorAttributes(dictPowerAttributes[currentPowerColor]);
+    }
+
+    public void StartCooldown()
+    {
+        cOnCooldown = StartCoroutine(COnCooldown());
     }
 
     IEnumerator COnCooldown()
     {
         yield return new WaitForSeconds(shootCooldown);
-        InstantiateNewBall();
+        InstantiateNewBlob();
 
         cOnCooldown = null;
         yield return null;
     }
 
-    public void ChangePowerColor(PowerColor _pc)
+    public void ChangePowerColor(PowerColor _powerColor)
     {
         if(cStartPower != null)
         {
             StopCoroutine(cStartPower);
         }
 
-        cStartPower = StartCoroutine(CStartPower(_pc));
+        cStartPower = StartCoroutine(CStartPower(_powerColor));
     }
 
-    IEnumerator CStartPower(PowerColor _pc)
+    IEnumerator CStartPower(PowerColor _powerColor)
     {
-        currentPowerColor = _pc;
+        currentPowerColor = _powerColor;
+        currentDraggableComponent = GetCurrentDraggableComponent(_powerColor);
+
+        currentDraggableComponent.ActivePower();
 
         yield return new WaitForSeconds(powerTime);
 
+        currentDraggableComponent.ResetPower();
+
         currentPowerColor = PowerColor.RED;
+        currentDraggableComponent = new RedDraggable(this);
 
         cStartPower = null;
         yield return null;
     }
+
+
 }
