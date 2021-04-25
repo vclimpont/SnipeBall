@@ -223,6 +223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blobMesh: {fileID: 3330875592341881825}
   baseScale: {x: 1, y: 1, z: 1}
+  impactPrefab: {fileID: 8918036015893402410, guid: 1fdcd5f6accaaa14f80ebc27a92f3504,
+    type: 3}
+  impactParticlesColor: {r: 0, g: 0, b: 0, a: 0}
   scorePrefab: {fileID: 7836130561682866591, guid: bf50c81e7af33754ea086925f668da85,
     type: 3}
   timerReset: 10

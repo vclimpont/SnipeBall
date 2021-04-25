@@ -956,7 +956,7 @@ MonoBehaviour:
   anchorRight: {fileID: 1723159964}
   anchorBotLeft: {fileID: 1667966853}
   anchorBotRight: {fileID: 1851894748}
-  timeBeforeSpawningFirstWall: 20
+  timeBeforeSpawningFirstWall: 15
   spawnMinRate: 5
   spawnMaxRate: 15
   wallLifeTimeMin: 7
@@ -1343,6 +1343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa1f798a6cbd22448efab3ec8016671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dieImpact: {fileID: 8918036015893402410, guid: e961f6d74151e4746a2322164047a9ee,
+    type: 3}
 --- !u!4 &1653099382
 Transform:
   m_ObjectHideFlags: 0

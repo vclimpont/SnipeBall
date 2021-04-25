@@ -42,5 +42,6 @@ public class Blob : ScorableComponent
         meshRenderer.material = pca.blobMaterial;
         trailRenderer.startColor = pca.lineRendererStartColor;
         trailRenderer.endColor = pca.lineRendererEndColor;
+        impactParticlesColor = pca.particlesColor;
     }
 }

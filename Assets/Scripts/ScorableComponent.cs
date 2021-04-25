@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ScorableComponent : StretchableComponent
 {
+    public GameObject impactPrefab;
+    public Color impactParticlesColor;
     public GameObject scorePrefab;
     public float timerReset = 2f;
 
@@ -42,6 +44,11 @@ public class ScorableComponent : StretchableComponent
                 mt.color = PlayerController.Instance.GetCurrentPCA().particlesColor;
                 st.healPlayer = true;
             }
+
+            GameObject impactGO = Instantiate(impactPrefab, col.GetContact(0).point, Quaternion.identity);
+            var main = impactGO.GetComponent<ParticleSystem>().main;
+            main.startColor = impactParticlesColor;
+            Destroy(impactGO, 1.5f);
 
             GameManager.GainScore(currentScoreReward);
 

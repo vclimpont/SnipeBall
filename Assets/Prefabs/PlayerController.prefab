@@ -56,31 +56,31 @@ MonoBehaviour:
     blobBackColor: {r: 0.8980392, g: 0.34901962, b: 0.34901962, a: 0.68235296}
     lineRendererStartColor: {r: 1, g: 0.29803923, b: 0.29803923, a: 0.6862745}
     lineRendererEndColor: {r: 1, g: 0.64705884, b: 0.64705884, a: 0.39215687}
-    particlesColor: {r: 1, g: 0.25490198, b: 0.25490198, a: 1}
+    particlesColor: {r: 1, g: 0.25490198, b: 0.25490198, a: 0.3254902}
   - powerColor: 1
     blobMaterial: {fileID: 2100000, guid: 7eacd97105329444bb40f45b494a1eb7, type: 2}
     blobBackColor: {r: 0.34901962, g: 0.7665689, b: 0.8980392, a: 0.68235296}
     lineRendererStartColor: {r: 0.2980392, g: 0.7679771, b: 1, a: 0.6862745}
     lineRendererEndColor: {r: 0.64705884, g: 0.95153546, b: 1, a: 0.39215687}
-    particlesColor: {r: 0.34901962, g: 0.76470596, b: 0.8980393, a: 1}
+    particlesColor: {r: 0.34901962, g: 0.76470596, b: 0.8980393, a: 0.3254902}
   - powerColor: 2
     blobMaterial: {fileID: 2100000, guid: b3e7f4ba6e1f8a34baf18be7e5780a70, type: 2}
     blobBackColor: {r: 0.34901962, g: 0.8980392, b: 0.34901962, a: 0.68235296}
     lineRendererStartColor: {r: 0.29803923, g: 1, b: 0.29803923, a: 0.6862745}
     lineRendererEndColor: {r: 0.64705884, g: 1, b: 0.64705884, a: 0.39215687}
-    particlesColor: {r: 0.29803923, g: 1, b: 0.29803923, a: 1}
+    particlesColor: {r: 0.29803923, g: 1, b: 0.29803923, a: 0.3254902}
   - powerColor: 3
     blobMaterial: {fileID: 2100000, guid: 6540890e4f106bd4cb8df202c9e7a25a, type: 2}
     blobBackColor: {r: 0.8980392, g: 0.8828428, b: 0.34901962, a: 0.68235296}
     lineRendererStartColor: {r: 1, g: 1, b: 0.29803923, a: 0.6862745}
     lineRendererEndColor: {r: 1, g: 1, b: 0.64705884, a: 0.39215687}
-    particlesColor: {r: 1, g: 1, b: 0.29803923, a: 1}
+    particlesColor: {r: 1, g: 1, b: 0.29803923, a: 0.3254902}
   - powerColor: 4
     blobMaterial: {fileID: 2100000, guid: 58bc7c70124b3094e89051683f92823a, type: 2}
     blobBackColor: {r: 0.8980392, g: 0.55965286, b: 0.34901962, a: 0.68235296}
     lineRendererStartColor: {r: 1, g: 0.5187561, b: 0.2980392, a: 0.6862745}
     lineRendererEndColor: {r: 1, g: 0.7698941, b: 0.64705884, a: 0.39215687}
-    particlesColor: {r: 1, g: 0.5176471, b: 0.29803923, a: 1}
+    particlesColor: {r: 1, g: 0.5176471, b: 0.29803923, a: 0.3254902}
   dragStartPos: {x: 0, y: 0, z: 0}
   dragStarted: 0
 --- !u!120 &2480751685664368764
