@@ -24,7 +24,9 @@ public class EnemySpawner : MonoBehaviour
 
             GameObject enemyGO = Instantiate(enemyPrefab, startPosition, Quaternion.identity);
             enemyGO.GetComponent<Enemy>().TargetDirection = (targetPosition - startPosition).normalized;
-            yield return new WaitForSeconds(Random.Range(spawnTimer, spawnTimer + 2f));
+
+            float scoreScale = Mathf.Clamp(GameManager.score * 0.001f, 0f, 2f);
+            yield return new WaitForSeconds(Random.Range(spawnTimer - scoreScale, (spawnTimer + 2f) - (scoreScale * 1.5f)));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScorableComponent : StretchableComponent
@@ -29,13 +30,17 @@ public class ScorableComponent : StretchableComponent
         if(sc != null)
         {
             currentScoreReward += 10;
-            TextMesh mt = Instantiate(scorePrefab, col.GetContact(0).point + new Vector2(Random.Range(-1f, 1f), 0), Quaternion.identity).GetComponent<ScoreText>().textMesh;
+            ScoreText st = Instantiate(scorePrefab, col.GetContact(0).point + new Vector2(Random.Range(-1f, 1f), 0), Quaternion.identity).GetComponent<ScoreText>();
+            TextMeshPro mt = st.textMesh;
             mt.text = "" + currentScoreReward;
-            mt.characterSize = Mathf.Clamp(0.35f + (0.005f * currentScoreReward), 0.35f, 0.75f);
+            mt.fontSize = Mathf.Clamp(10f + (0.05f * currentScoreReward), 10f, 15f);
 
             if(currentScoreReward % 100 == 0)
             {
-                GameManager.RecoverHealth();
+                mt.fontSize = 17f;
+                mt.fontStyle = FontStyles.Bold;
+                mt.color = PlayerController.Instance.GetCurrentPCA().particlesColor;
+                st.healPlayer = true;
             }
 
             GameManager.GainScore(currentScoreReward);

@@ -193,5 +193,8 @@ public class PlayerController : MonoBehaviour
         yield return null;
     }
 
-
+    public PowerColorAttributes GetCurrentPCA()
+    {
+        return DictPowerAttributes[currentPowerColor];
+    }
 }

@@ -19,12 +19,13 @@ public class Enemy : ScorableComponent
 
     void Start()
     {
-        rb.AddForce((Vector2)TargetDirection * (Random.Range(baseSpeed, maxSpeed)), ForceMode2D.Impulse);
+        float scoreScale = Mathf.Clamp(GameManager.score * 0.0005f, 0f, 2f);
+        rb.AddForce((Vector2)TargetDirection * (Random.Range(baseSpeed + scoreScale, maxSpeed + scoreScale)), ForceMode2D.Impulse);
     }
 
     void Update()
     {
-        rb.gravityScale = 0.25f * GameManager.gravityMultiplier;
+        rb.gravityScale = 0.05f * GameManager.gravityMultiplier;
         rb.drag = GameManager.dragMultiplier;
     }
 }
