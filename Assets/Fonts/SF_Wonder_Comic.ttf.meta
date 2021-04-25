@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 090a765b5743d6f4fae746f2724be1ea
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SF Wonder Comic
+  fontNames:
+  - SF Wonder Comic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d899af78e6427704ca43005af052adc9, type: 3}
+  - {fileID: 12800000, guid: 9859001a6ae005846a4e5d569a498cff, type: 3}
+  - {fileID: 12800000, guid: a87cf76f941574e4aae3a8e0193c58b6, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
