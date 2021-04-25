@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
     public static float gravityMultiplier = 1f;
     public static float dragMultiplier = 0f;
 
@@ -12,9 +13,12 @@ public class GameManager : MonoBehaviour
     public static int maxHealth = 10;
     public static int score = 0;
 
+    private bool gameOver;
+
     void Awake()
     {
         currentHealth = maxHealth;
+        gameOver = false;
         score = 0;
     }
 
@@ -33,10 +37,35 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (gameOver) return;
+
         if(currentHealth <= 0)
         {
-            Debug.Log("GAME OVER");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            gameOver = true;
+            Time.timeScale = 0f;
+
+            bool newRecord = false;
+
+            if(SaveManager.Instance.state.highscore < score)
+            {
+                SaveManager.Instance.state.highscore = score;
+                SaveManager.Instance.Save();
+                newRecord = true;
+            }
+
+            UIManager.Instance.ShowGameOver(newRecord);
         }
+    }
+
+    public void Retry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainGame");
+    }
+
+    public void BackToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Pregame");
     }
 }

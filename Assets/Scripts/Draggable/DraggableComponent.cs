@@ -68,6 +68,7 @@ public class DraggableComponent
         Vector3 shootDirection = (pc.dragStartPos - dragReleasePos).normalized;
         currentBlob.GetComponent<Blob>().Shoot(shootDirection, pc.force);
         currentBlob.GetComponent<Blob>().blobMesh.transform.localScale = Vector3.one;
+        pc.audioSource.Play();
 
         pc.StartCooldown();
         pc.dragStarted = false;

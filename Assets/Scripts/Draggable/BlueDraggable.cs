@@ -88,6 +88,7 @@ public class BlueDraggable : DraggableComponent
         Vector3 shootDirection2 = Quaternion.Euler(0, 0, -10f) * (pc.dragStartPos - dragReleasePos).normalized;
         GameObject twinBlob = GameObject.Instantiate(currentBlob.gameObject, currentBlob.transform.position, currentBlob.transform.rotation);
         twinBlob.GetComponent<Blob>().Shoot(shootDirection2, pc.force);
+        pc.audioSource.Play();
 
         pc.StartCooldown();
         pc.dragStarted = false;

@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject gameCanvas;
+    public GameObject postGameCanvas;
+    public Text score;
+    public GameObject newRecord;
+
     public Image healthSprite;
     public TextMeshProUGUI tmp;
     private Animator tmpAnimator;
@@ -30,5 +35,13 @@ public class UIManager : MonoBehaviour
     public void GainScore()
     {
         tmpAnimator.SetTrigger("TrgStretch");
+    }
+
+    public void ShowGameOver(bool hasNewRecord)
+    {
+        newRecord.SetActive(hasNewRecord);
+        gameCanvas.SetActive(false);
+        postGameCanvas.SetActive(true);
+        score.text = "" + GameManager.score;
     }
 }

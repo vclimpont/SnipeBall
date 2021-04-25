@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public enum PowerColor { RED, BLUE, GREEN, YELLOW, ORANGE }
 
+    public AudioSource audioSource;
     public GameObject blobPrefab;
     public SpriteRenderer blobBackgroundSprite; 
     public float force;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         {
             Instance = this;
             DictPowerAttributes = new Dictionary<PowerColor, PowerColorAttributes>();
+            audioSource = GetComponent<AudioSource>();
         }
     }
 

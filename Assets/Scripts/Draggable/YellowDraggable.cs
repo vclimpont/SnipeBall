@@ -59,6 +59,7 @@ public class YellowDraggable : DraggableComponent
         currentBlob.GetComponent<Blob>().blobMesh.transform.localScale = Vector3.one * currentScaleMultiplier;
         currentBlob.GetComponent<Blob>().baseScale = Vector3.one * currentScaleMultiplier;
         currentBlob.GetComponent<CircleCollider2D>().radius = 0.5f * currentScaleMultiplier;
+        pc.audioSource.Play();
 
         pc.StartCooldown();
         pc.dragStarted = false;

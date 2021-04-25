@@ -9,12 +9,14 @@ public class Blob : ScorableComponent
 
     private Rigidbody2D rb;
     private CircleCollider2D circleCollider;
+    private AudioSource audioSource;
 
     protected override void Awake()
     {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Die()
@@ -43,5 +45,16 @@ public class Blob : ScorableComponent
         trailRenderer.startColor = pca.lineRendererStartColor;
         trailRenderer.endColor = pca.lineRendererEndColor;
         impactParticlesColor = pca.particlesColor;
+    }
+
+    protected override void OnCollisionEnter2D(Collision2D col)
+    {
+        base.OnCollisionEnter2D(col);
+
+        ScorableComponent sc = col.transform.GetComponent<ScorableComponent>();
+        if (sc != null && audioSource.enabled)
+        {
+            audioSource.Play();
+        }
     }
 }
