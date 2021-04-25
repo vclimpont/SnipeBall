@@ -20,7 +20,8 @@ public class Enemy : ScorableComponent
     void Start()
     {
         float scoreScale = Mathf.Clamp(GameManager.score * 0.0005f, 0f, 2f);
-        rb.AddForce((Vector2)TargetDirection * (Random.Range(baseSpeed + scoreScale, maxSpeed + scoreScale)), ForceMode2D.Impulse);
+        float f = GameManager.score >= 100000 ? 1.5f : 1f; 
+        rb.AddForce((Vector2)TargetDirection * f * (Random.Range(baseSpeed + scoreScale, maxSpeed + scoreScale)), ForceMode2D.Impulse);
     }
 
     void Update()

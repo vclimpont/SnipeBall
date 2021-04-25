@@ -37,11 +37,12 @@ public class ScorableComponent : StretchableComponent
             mt.text = "" + currentScoreReward;
             mt.fontSize = Mathf.Clamp(10f + (0.05f * currentScoreReward), 10f, 15f);
 
-            if(currentScoreReward % 100 == 0)
+            if(currentScoreReward % 200 == 0)
             {
                 mt.fontSize = 17f;
                 mt.fontStyle = FontStyles.Bold;
-                mt.color = PlayerController.Instance.GetCurrentPCA().particlesColor;
+                Color c = PlayerController.Instance.GetCurrentPCA().particlesColor;
+                mt.color = new Color(c.r, c.g, c.b, 200f);
                 st.healPlayer = true;
             }
 

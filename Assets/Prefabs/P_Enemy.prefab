@@ -91,8 +91,8 @@ MonoBehaviour:
   scorePrefab: {fileID: 7836130561682866591, guid: bf50c81e7af33754ea086925f668da85,
     type: 3}
   timerReset: 10
-  baseSpeed: 4.5
-  maxSpeed: 7
+  baseSpeed: 6
+  maxSpeed: 8
 --- !u!1001 &794733203653258214
 PrefabInstance:
   m_ObjectHideFlags: 0

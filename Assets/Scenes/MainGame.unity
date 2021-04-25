@@ -1261,8 +1261,8 @@ MonoBehaviour:
   anchorBotLeft: {fileID: 1667966853}
   anchorBotRight: {fileID: 1851894748}
   timeBeforeSpawningFirstWall: 15
-  spawnMinRate: 5
-  spawnMaxRate: 15
+  spawnMinRate: 15
+  spawnMaxRate: 30
   wallLifeTimeMin: 7
   wallLifeTimeMax: 12
 --- !u!1 &1112129563
@@ -2533,8 +2533,8 @@ MonoBehaviour:
   anchorBotLeft: {fileID: 1667966853}
   anchorBotRight: {fileID: 1851894748}
   timeBeforeSpawningFirstPower: 30
-  spawnMinRate: 12.5
-  spawnMaxRate: 20
+  spawnMinRate: 15
+  spawnMaxRate: 25
   powerLifeTime: 10
 --- !u!1 &2077570973
 GameObject:

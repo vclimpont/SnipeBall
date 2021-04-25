@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     public static float gravityMultiplier = 1f;
     public static float dragMultiplier = 0f;
 
-    public static int currentHealth = 10;
-    public static int maxHealth = 10;
+    public static int currentHealth = 5;
+    public static int maxHealth = 5;
     public static int score = 0;
 
     private bool gameOver;
