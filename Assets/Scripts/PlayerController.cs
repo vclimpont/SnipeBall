@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
             Instance = this;
             DictPowerAttributes = new Dictionary<PowerColor, PowerColorAttributes>();
             audioSource = GetComponent<AudioSource>();
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Blob"), LayerMask.NameToLayer("BlobWall"), false);
         }
     }
 
